@@ -34,6 +34,7 @@ public class CursoResource {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Integer id){
         cursoRepository.deleteById(id);
     }
@@ -42,5 +43,12 @@ public class CursoResource {
     public ResponseEntity<Curso> criar(@RequestBody Curso curso, HttpServletResponse response) {
     Curso cursoSalvo = cursoService.salvar(curso);
     return ResponseEntity.status(HttpStatus.CREATED).body(cursoSalvo);
+    }
+
+    //put
+    @PutMapping("/{id}")
+    public ResponseEntity<Curso> atualizar(@PathVariable Integer id, @RequestBody Curso curso){
+    Curso cursoSalvo = cursoService.atualizar(id, curso);
+    return ResponseEntity.ok(cursoSalvo);
     }
 }

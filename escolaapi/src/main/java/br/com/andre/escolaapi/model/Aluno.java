@@ -13,6 +13,7 @@ public class Aluno {
 
     private String nomealuno;
 
+    //fk
     @ManyToOne
     @JoinColumn(name= "curso_id")
     private Curso curso;
